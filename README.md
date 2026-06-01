@@ -1,3 +1,47 @@
+
+// tips and tricks
+
+/*
+ملاحظة: متعملش forEach عالمصفوفات في الريآكت، لأن هي نفسها بتعمل عليها كدا.
+
+ملاحظة: الريآكت بتحب ال immutable  فتعلم ال spread operator من فضلك
+
+............
+إذا أردت تمرير props بين الكمبوننتس، فأنت تمررها من ال parent components  إلى ال children component .
+
++ تعلم الdistructuring تبع الجافا سكريبت، موضوع مهم.
+.........
+css classes & modules.. 
+
+كلاسات الجي إسى معروفة بمللها.
+فإذا أدرت أن تكتب  styles تؤثر على الكود ككل، استخدم، apps.css
+..
+وإذا أردت أنت تجعل التأثير ينعكس على كمبوننت بعينه فيمكنك استخدام css modules33.
+
+-------------
+ states:
+
+يمكنك استخدامها في الريآكت ومن مميزاتها أنك يمكنك تحديث البيانات فيها وبنفس الوقت تستطيع الحصول على البيانات القديمة.
+«التحديث يظهر في الرندر، البريڤياس تظهر في الكود العادي ال sync«
+
+ال states بتكون  async ولها  lifecycle  سندرسه لاحقا في الريآكت. 
+وتعتمد يشكل كبير على فكرة ال destructuring
+
+مثال بسيط 
+// لاحظ عامل  array destructuring لأن ال state  من نوع array (array of objects)
+const [uses, setUsers] = useState([ 
+وتضع الكائنات المخزنة في المصفوفة هنا
+]);
+
+
+• يمكنك حتى تمرير الstate في ال props عادي كأنها متغير مثلما سبق•
+
+لاحظ أيضا: ال state تعتبر الكوور تبع الكمبوننت، أي تغير بيحصل في ال state بيتم عمل  rerender  للكمبوننت
+
+--------------
+*/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
