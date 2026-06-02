@@ -5,6 +5,7 @@ import styles from './Cards.css';
 
 const Cards = ({allMembers, deletedCard})=>{
 
+  // ### NOTE: you pass the props frol parent to child, but you pass the handler function from the child to the parent ###
     const membersCards = allMembers.map((el, idx)=>{
     return (
             <div className="card-body">
