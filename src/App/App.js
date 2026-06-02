@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import './App.css';
 import Cards from '../Components/Cards/Cards';
 
@@ -18,6 +18,19 @@ function App() {
   //   { name: "Noor", age: 26, address: "Assuit-Egypt", working: false },
   //   { name: "Noreen", age: 28, address: "Cairo-Egypt", working: true },
   // ];
+
+  // ### USE REF ### to handle input from the elemnt/form..etc
+  const inputEl = useRef ();
+
+  // function to use useRef to show the logs in the search
+  const searchShower = ()=>{
+    console.log(inputEl.current.value);
+  }
+
+  // function to use useRef to focus on inputEl which rederes to search bar
+  const focusOnSearch = ()=>{
+    inputEl.current.focus();
+  }
 
 
   // ### USE STATE ###
@@ -66,6 +79,10 @@ function App() {
     },
   ]);
 
+  //### use state to show cards or hide ###
+
+  const [showCard, setShowCard] = useState(true);
+
 // // ### handling deleting ###
 // const deleteItem = (e, clickedIndex)=>{
 //     console.log(e, clickedIndex); // to test the clicked item and it's index
@@ -88,17 +105,26 @@ console.log(state); // because state is async u will find the previous ones befo
 }
 
 
-
+const toggleHandler= ()=>{
+  setShowCard(!showCard); // i told him, after clicking, reverse the last showCard state value. 
+}
 
 
 
 
   return (
     <div className="App">
-     <h1>Hello from App Component!</h1>
-
-     <Cards allMembers = {state}  deletedCard = {deleteItem}/> 
-
+      <h1>Hello from App Component!</h1>
+      <button style={{marginBottom:"20px", backgroundColor:"biguie", color: "blue", cursor: "pointer"}} onClick={toggleHandler}>
+        {showCard? "press to hide cards": "press to show cards"}
+      </button>
+      <div className={showCard ? "show": "hide"}>
+        <div>
+          <input type='text' placeholder='search' ref={inputEl} on onChange={searchShower} />
+          <button onClick={focusOnSearch}>click me</button>
+        </div>
+        <Cards allMembers={state} deletedCard={deleteItem} />
+      </div>
     </div>
   );
 }
