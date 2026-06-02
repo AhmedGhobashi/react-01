@@ -1,12 +1,12 @@
 import React, {useState, useRef} from 'react';
 import './App.css';
 import Cards from '../Components/Cards/Cards';
+import Filter from '../Components/Filter/Filter';
 
 
 
 
 function App() {
-
   // const boys = [
   //   { name: "Ahmed", age: 25, address: "Alex-Egypt", working: false },
   //   { name: "Emam", age: 26, address: "KFS-Egypt", working: true },
@@ -20,18 +20,17 @@ function App() {
   // ];
 
   // ### USE REF ### to handle input from the elemnt/form..etc
-  const inputEl = useRef ();
+  const inputEl = useRef();
 
-  // function to use useRef to show the logs in the search
-  const searchShower = ()=>{
-    console.log(inputEl.current.value);
-  }
+  // // function to use useRef to show the logs in the search
+  // const searchShower = ()=>{
+  //   console.log(inputEl.current.value);
+  // }
 
-  // function to use useRef to focus on inputEl which rederes to search bar
-  const focusOnSearch = ()=>{
-    inputEl.current.focus();
-  }
-
+  // // function to use useRef to focus on inputEl which rederes to search bar
+  // const focusOnSearch = ()=>{
+  //   inputEl.current.focus();
+  // }
 
   // ### USE STATE ###
   const [state, setState] = useState([
@@ -83,46 +82,56 @@ function App() {
 
   const [showCard, setShowCard] = useState(true);
 
-// // ### handling deleting ###
-// const deleteItem = (e, clickedIndex)=>{
-//     console.log(e, clickedIndex); // to test the clicked item and it's index
+  // // ### handling deleting ###
+  // const deleteItem = (e, clickedIndex)=>{
+  //     console.log(e, clickedIndex); // to test the clicked item and it's index
 
-//     const itemsAfterDeleting = state.filter((el, el_Ind)=> clickedIndex !== el_Ind )
-//     console.log(itemsAfterDeleting); // to test
-//     setState(itemsAfterDeleting);
-//   }
+  //     const itemsAfterDeleting = state.filter((el, el_Ind)=> clickedIndex !== el_Ind )
+  //     console.log(itemsAfterDeleting); // to test
+  //     setState(itemsAfterDeleting);
+  //   }
 
+  /* the JSX code of useRef, but we deleted it to use controlled component --- we named it Filter.js --- instead
 
-// ### Handling deleting the 2nd way ###:
-const deleteItem = (e, clickedIndex)=>{ 
-// we will use set state as a function ((and u  pass in it what we call "the previous state" the old state or the state coming from ascny opertation))
-setState((previousState)=>{
-  // return previousState; // if u didn't write this, this means u will destroy the state and u will get error just to test
+          <div>
+          <input type='text' placeholder='search' ref={inputEl} on onChange={searchShower} />
+          <button onClick={focusOnSearch}>click me</button>
+        </div>
 
-  return previousState.filter((el, idx)=> idx !== clickedIndex);
-})
-console.log(state); // because state is async u will find the previous ones before deleting immediately.. because it's sync and setState is async.
-}
+*/
 
+  // ### Handling deleting the 2nd way ###:
+  const deleteItem = (e, clickedIndex) => {
+    // we will use set state as a function ((and u  pass in it what we call "the previous state" the old state or the state coming from ascny opertation))
+    setState((previousState) => {
+      // return previousState; // if u didn't write this, this means u will destroy the state and u will get error just to test
 
-const toggleHandler= ()=>{
-  setShowCard(!showCard); // i told him, after clicking, reverse the last showCard state value. 
-}
+      return previousState.filter((el, idx) => idx !== clickedIndex);
+    });
+    console.log(state); // because state is async u will find the previous ones before deleting immediately.. because it's sync and setState is async.
+  };
 
-
-
+  const toggleHandler = () => {
+    setShowCard(!showCard); // i told him, after clicking, reverse the last showCard state value.
+  };
 
   return (
     <div className="App">
       <h1>Hello from App Component!</h1>
-      <button style={{marginBottom:"20px", backgroundColor:"biguie", color: "blue", cursor: "pointer"}} onClick={toggleHandler}>
-        {showCard? "press to hide cards": "press to show cards"}
+      <button
+        style={{
+          marginBottom: "20px",
+          backgroundColor: "biguie",
+          color: "blue",
+          cursor: "pointer",
+        }}
+        onClick={toggleHandler}
+      >
+        {showCard ? "press to hide cards" : "press to show cards"}
       </button>
-      <div className={showCard ? "show": "hide"}>
-        <div>
-          <input type='text' placeholder='search' ref={inputEl} on onChange={searchShower} />
-          <button onClick={focusOnSearch}>click me</button>
-        </div>
+      <div className={showCard ? "show" : "hide"}>
+
+        <Filter />
         <Cards allMembers={state} deletedCard={deleteItem} />
       </div>
     </div>
