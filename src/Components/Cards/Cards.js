@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 import styles from './Cards.css';
 
 
-const Cards = ({allMembers})=>{
+const Cards = ({allMembers, deletedCard})=>{
 
     const membersCards = allMembers.map((el, idx)=>{
     return (
@@ -11,6 +11,7 @@ const Cards = ({allMembers})=>{
                 <h3>{el.name}</h3>
                 <p>{el.age}</p>
                 <p>{el.address}</p>
+                <button className="delete-card" onClick={(e)=>deletedCard(el, idx)}>x</button>
             </div>
             );
     })

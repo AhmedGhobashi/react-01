@@ -66,14 +66,25 @@ function App() {
     },
   ]);
 
+// handling deleting
+const deleteItem = (e, clickedIndex)=>{
+    console.log(e, clickedIndex); // to test the clicked item and it's index
+
+    const itemsAfterDeleting = state.filter((el, el_Ind)=> clickedIndex !== el_Ind )
+    console.log(itemsAfterDeleting); // to test
+    setState(itemsAfterDeleting);
+  }
+
+
+
+
 
 
   return (
     <div className="App">
      <h1>Hello from App Component!</h1>
 
-     // PASSING STATE AS A PROP TO THE CHILD
-     <Cards allMembers = {state} /> 
+     <Cards allMembers = {state}  deletedCard = {deleteItem}/> 
 
     </div>
   );
