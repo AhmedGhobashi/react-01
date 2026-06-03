@@ -33,6 +33,7 @@ function App() {
   // ### USE STATE ###
   const [state, setState] = useState([
     {
+      id: 1,
       name: "Ahmed",
       age: 25,
       address: "Alex-Egypt",
@@ -40,6 +41,7 @@ function App() {
       gender: "male",
     },
     {
+      id: 2,
       name: "Emam",
       age: 26,
       address: "KFS-Egypt",
@@ -47,6 +49,7 @@ function App() {
       gender: "male",
     },
     {
+      id: 3,
       name: "Ibrahim",
       age: 25,
       address: "Fowa-Egypt",
@@ -54,6 +57,7 @@ function App() {
       gender: "male",
     },
     {
+      id: 4,
       name: "Nora",
       age: 27,
       address: "Cairo-Egypt",
@@ -61,6 +65,7 @@ function App() {
       gender: "female",
     },
     {
+      id: 5,
       name: "Noor",
       age: 26,
       address: "Assuit-Egypt",
@@ -68,6 +73,7 @@ function App() {
       gender: "female",
     },
     {
+      id: 6,
       name: "Noreen",
       age: 28,
       address: "Cairo-Egypt",
@@ -83,23 +89,22 @@ function App() {
   const [theNames, setTheNames] = useState("");
 
   // // ### handling deleting ###
-  // const deleteItem = (e, clickedIndex)=>{
-  //     console.log(e, clickedIndex); // to test the clicked item and it's index
+  // const deleteItem = (e, selectedID)=>{
+  //     console.log(e, selectedID); // to test the clicked item and it's index
 
-  //     const itemsAfterDeleting = state.filter((el, el_Ind)=> clickedIndex !== el_Ind )
+  //     const itemsAfterDeleting = state.filter((el, el_Ind)=> selectedID !== el_Ind )
   //     console.log(itemsAfterDeleting); // to test
   //     setState(itemsAfterDeleting);
   //   }
 
 
-
   // ### Handling deleting the 2nd way ###:
-  const deleteItem = (e, clickedIndex) => {
+  const deleteItem = (e, selectedID) => {
     // we will use set state as a function ((and u  pass in it what we call "the previous state" the old state or the state coming from ascny opertation))
     setState((previousState) => {
       // return previousState; // if u didn't write this, this means u will destroy the state and u will get error just to test
 
-      return previousState.filter((el, idx) => idx !== clickedIndex);
+      return previousState.filter((el) => el.id !== selectedID);
     });
     console.log(state); // because state is async u will find the previous ones before deleting immediately.. because it's sync and setState is async.
   };

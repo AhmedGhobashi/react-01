@@ -1,6 +1,6 @@
 .card-body{
     margin-bottom: 5px;
-    background-color: rgb(223, 202, 13);
+    /* background-color: rgb(223, 202, 13); */
     border: 1px solid black;
     width: 70%;
     position: relative;
@@ -9,7 +9,7 @@
 }
 
 .card-body:hover{
-    background-color: rgb(241, 241, 239)
+    opacity: 0.75;
 }
 
 .cards-container{
