@@ -2,6 +2,8 @@ import React, {useState, useRef} from 'react';
 import './App.css';
 import Cards from '../Components/Cards/Cards';
 import Filter from '../Components/Filter/Filter';
+import Modal from '../Components/Modal/Modal';
+
 
 
 
@@ -88,6 +90,9 @@ function App() {
   // ### use state to link the states between frilter component and app ###
   const [theNames, setTheNames] = useState("");
 
+  // ### USE STATE FOR MODALS ###
+  const [showModal, setShowModal]= useState (false);
+
   // // ### handling deleting ###
   // const deleteItem = (e, selectedID)=>{
   //     console.log(e, selectedID); // to test the clicked item and it's index
@@ -130,12 +135,23 @@ const searchedNameIS = ()=>{
 }
 
 
+// function to listen to backDrop in the modal component
+const closeModal = ()=>{
+  setShowModal (false);
+}
+
+
+
   return (
     <div className="App">
       <h1>Hello from App Component!</h1>
-      <button
+      <Modal showingModal={showModal}  closingModal= {closeModal} />
+      <div>
+        <button style={{marginRight: "20px"}} onClick={()=>setShowModal(true)}>Show modal</button>
+
+        <button
         style={{
-          marginBottom: "20px",
+          marginBottom: "20px", marginLeft: "20px",
           backgroundColor: "biguie",
           color: "blue",
           cursor: "pointer",
@@ -144,6 +160,8 @@ const searchedNameIS = ()=>{
       >
         {showCard ? "press to hide cards" : "press to show cards"}
       </button>
+      </div>
+      
       <div className={showCard ? "show" : "hide"}>
 
         <Filter F ={filterNames}/>
