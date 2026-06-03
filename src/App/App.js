@@ -7,20 +7,9 @@ import Filter from '../Components/Filter/Filter';
 
 
 function App() {
-  // const boys = [
-  //   { name: "Ahmed", age: 25, address: "Alex-Egypt", working: false },
-  //   { name: "Emam", age: 26, address: "KFS-Egypt", working: true },
-  //   { name: "Ibrahim", age: 25, address: "Fowa-Egypt", working: true },
-  //  ];
 
-  // const girls = [
-  //   { name: "Nora", age: 27, address: "Cairo-Egypt", working: true },
-  //   { name: "Noor", age: 26, address: "Assuit-Egypt", working: false },
-  //   { name: "Noreen", age: 28, address: "Cairo-Egypt", working: true },
-  // ];
-
-  // ### USE REF ### to handle input from the elemnt/form..etc
-  const inputEl = useRef();
+  // // ### USE REF ### to handle input from the elemnt/form..etc
+  // const inputEl = useRef();
 
   // // function to use useRef to show the logs in the search
   // const searchShower = ()=>{
@@ -31,6 +20,15 @@ function App() {
   // const focusOnSearch = ()=>{
   //   inputEl.current.focus();
   // }
+
+    /* the JSX code of useRef, but we deleted it to use controlled component --- we named it Filter.js --- instead
+
+          <div>
+          <input type='text' placeholder='search' ref={inputEl} on onChange={searchShower} />
+          <button onClick={focusOnSearch}>click me</button>
+        </div>
+
+*/
 
   // ### USE STATE ###
   const [state, setState] = useState([
@@ -79,8 +77,10 @@ function App() {
   ]);
 
   //### use state to show cards or hide ###
-
   const [showCard, setShowCard] = useState(true);
+
+  // ### use state to link the states between frilter component and app ###
+  const [theNames, setTheNames] = useState("");
 
   // // ### handling deleting ###
   // const deleteItem = (e, clickedIndex)=>{
@@ -91,14 +91,7 @@ function App() {
   //     setState(itemsAfterDeleting);
   //   }
 
-  /* the JSX code of useRef, but we deleted it to use controlled component --- we named it Filter.js --- instead
 
-          <div>
-          <input type='text' placeholder='search' ref={inputEl} on onChange={searchShower} />
-          <button onClick={focusOnSearch}>click me</button>
-        </div>
-
-*/
 
   // ### Handling deleting the 2nd way ###:
   const deleteItem = (e, clickedIndex) => {
@@ -111,9 +104,26 @@ function App() {
     console.log(state); // because state is async u will find the previous ones before deleting immediately.. because it's sync and setState is async.
   };
 
+  // function toggle
   const toggleHandler = () => {
     setShowCard(!showCard); // i told him, after clicking, reverse the last showCard state value.
   };
+
+// function Filtering
+const filterNames = (name)=>{
+  // console.log(name);
+  setTheNames(name); // the name tract in searchbar coming frim filter component 
+}
+
+// Name Filter
+const searchedNameIS = ()=>{
+  console.log(theNames);
+  if (theNames.length !==0){
+    return state.filter((el)=> el.name.includes(theNames));
+  }
+  return state;
+}
+
 
   return (
     <div className="App">
@@ -131,8 +141,8 @@ function App() {
       </button>
       <div className={showCard ? "show" : "hide"}>
 
-        <Filter />
-        <Cards allMembers={state} deletedCard={deleteItem} />
+        <Filter F ={filterNames}/>
+        <Cards allMembers={searchedNameIS()} deletedCard={deleteItem} />
       </div>
     </div>
   );
