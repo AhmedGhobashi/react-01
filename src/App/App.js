@@ -9,7 +9,7 @@ import Button from '../Components/Layout/Button';
 
 
 
-function App() {
+function App(props) {
 
   // // ### USE REF ### to handle input from the elemnt/form..etc
   // const inputEl = useRef();
@@ -40,7 +40,6 @@ function App() {
       name: "Ahmed",
       age: 25,
       address: "Alex-Egypt",
-      working: false,
       gender: "male",
     },
     {
@@ -48,7 +47,6 @@ function App() {
       name: "Emam",
       age: 26,
       address: "KFS-Egypt",
-      working: true,
       gender: "male",
     },
     {
@@ -56,7 +54,6 @@ function App() {
       name: "Ibrahim",
       age: 25,
       address: "Fowa-Egypt",
-      working: true,
       gender: "male",
     },
     {
@@ -64,7 +61,6 @@ function App() {
       name: "Nora",
       age: 27,
       address: "Cairo-Egypt",
-      working: true,
       gender: "female",
     },
     {
@@ -72,7 +68,6 @@ function App() {
       name: "Noor",
       age: 26,
       address: "Assuit-Egypt",
-      working: false,
       gender: "female",
     },
     {
@@ -80,7 +75,6 @@ function App() {
       name: "Noreen",
       age: 28,
       address: "Cairo-Egypt",
-      working: true,
       gender: "female",
     },
   ]);
@@ -120,10 +114,15 @@ function App() {
     setShowCard(!showCard); // i told him, after clicking, reverse the last showCard state value.
   };
 
-// function Filtering
+  //new user handler (this will listen to the dorm on Adduser component)
+  const newUserHandler = (data)=>{
+    console.log ("data in app component from Adduser component is:",data);
+  }
+
+// function Filtering searching
 const filterNames = (name)=>{
   // console.log(name);
-  setTheNames(name); // the name tract in searchbar coming frim filter component 
+  setTheNames(name); // the name track in searchbar coming frim filter component 
 }
 
 // Name Filter
@@ -146,7 +145,9 @@ const closeModal = ()=>{
   return (
     <div className="App">
       <h1>Hello from App Component!</h1>
-      <Modal showingModal={showModal}  closingModal= {closeModal} />
+      <Modal showingModal={showModal}  closingModal= {closeModal} newUserHandler = {newUserHandler}> 
+        {props.children} 
+      </Modal>
       <div>
         <button style={{marginRight: "20px"}} onClick={()=>setShowModal(true)}>Show modal</button>
 
