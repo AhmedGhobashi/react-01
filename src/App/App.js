@@ -3,6 +3,7 @@ import './App.css';
 import Cards from '../Components/Cards/Cards';
 import Filter from '../Components/Filter/Filter';
 import Modal from '../Components/Modal/Modal';
+import Button from '../Components/Layout/Button';
 
 
 
@@ -149,17 +150,9 @@ const closeModal = ()=>{
       <div>
         <button style={{marginRight: "20px"}} onClick={()=>setShowModal(true)}>Show modal</button>
 
-        <button
-        style={{
-          marginBottom: "20px", marginLeft: "20px",
-          backgroundColor: "biguie",
-          color: "blue",
-          cursor: "pointer",
-        }}
-        onClick={toggleHandler}
-      >
-        {showCard ? "press to hide cards" : "press to show cards"}
-      </button>
+        <Button onClick={toggleHandler}>
+          {showCard ? "hide cards" : "show cards"}
+        </Button>
       </div>
       
       <div className={showCard ? "show" : "hide"}>
