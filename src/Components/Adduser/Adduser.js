@@ -30,12 +30,12 @@ const Adduser = (props)=>{
         address: input.address,
         gender: input.gender 
       });
-     
     };
 
 
+
     const inputHandler = (e)=>{
-      const key = e.target.id;
+        const key = e.target.id; 
       const value = e.target.value;
       /* setInput({[key]: value}); // error because it's async */
       setInput({ ...input, [key]: value });

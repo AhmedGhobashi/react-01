@@ -9,6 +9,7 @@ import Button from '../Components/Layout/Button';
 
 
 
+
 function App(props) {
 
   // // ### USE REF ### to handle input from the elemnt/form..etc
@@ -83,7 +84,7 @@ function App(props) {
   const [showCard, setShowCard] = useState(true);
 
   // ### use state to link the states between frilter component and app ###
-  const [theNames, setTheNames] = useState("");
+  const [theNames, setTheNames] = useState('');
 
   // ### USE STATE FOR MODALS ###
   const [showModal, setShowModal]= useState (false);
@@ -101,10 +102,10 @@ function App(props) {
   // ### Handling deleting the 2nd way ###:
   const deleteItem = (e, selectedID) => {
     // we will use set state as a function ((and u  pass in it what we call "the previous state" the old state or the state coming from ascny opertation))
-    setState((previousState) => {
+    setState((state) => {
       // return previousState; // if u didn't write this, this means u will destroy the state and u will get error just to test
 
-      return previousState.filter((el) => el.id !== selectedID);
+      return state.filter((el) => el.id !== selectedID);
     });
     console.log(state); // because state is async u will find the previous ones before deleting immediately.. because it's sync and setState is async.
   };
@@ -117,7 +118,11 @@ function App(props) {
   //new user handler (this will listen to the dorm on Adduser component)
   const newUserHandler = (data)=>{
     console.log ("data in app component from Adduser component is:",data);
+    setState ((prevState)=> [...prevState, data]);
   }
+  
+
+  
 
 // function Filtering searching
 const filterNames = (name)=>{
@@ -139,7 +144,7 @@ const searchedNameIS = ()=>{
 const closeModal = ()=>{
   setShowModal (false);
 }
-
+ 
 
 
   return (
